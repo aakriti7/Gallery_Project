@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html ng-app="demoApp">
+
+<head>
+    <title>Angular Grid Demo</title>
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <style>
+
+        .dynamic-grid{
+            position: relative;
+            display: none;
+        }
+
+        .dynamic-grid.angular-grid{
+            display: block;
+        }
+
+        .grid {
+            border: 1px solid #cccccc;
+            position: absolute;
+            list-style: none;
+            background: #ffffff;
+            box-sizing: border-box;
+            -moz-box-sizing : border-box;
+            -webkit-transition: all 0.6s ease-out;
+            transition: all 0.6s ease-out;
+            overflow: hidden;
+        }
+        
+        .grid-img {
+            width: 100%;
+            vertical-align: middle;
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .grid-img.img-loaded{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .grid-img.img-loading{
+            visibility: visible;
+            opacity: 0;
+        }
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Bottom left text */
+.myId {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+        
+
+
+li img {
+     border: 1px solid #cccccc;
+}
+/* the 'p' in a clicked 'li' */
+li.c1  img{
+ border: 10px solid green;
+}
+li.c2  img{
+ border: 10px solid red;
+}
+
+figure {
+  position: relative;
+ 
+}
+figcaption {
+  position: absolute;
+  width: 200px;
+  line-height: 150px;
+  text-align: center;
+  left: 0;
+  top: 0;
+  text-shadow: 0 0 1px white;
+  font-weight:bold;
+}
+
+    </style>
+</head>
+
+<body class="" data-ng-controller="demo">
+
+    <button ng-click="reload()" style="width:100px;height:40px;">Reload</button>
+
+    <ul class="dynamic-grid" angular-grid="pics" grid-width="300" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="false" >
+        <li data-ng-repeat="pic in pics" class="grid" ng-class="{ 'c1': pic.clicked===1,'c2':pic.clicked===2 }" data-ng-clock  >
+           
+          
+
+    
+             <figure> 
+              
+            <img  src="{{pic.thumbnailUrl}}" class="grid-img"  ng-click="open(pic)" ng-model="myObj" data-actual-width = "{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
+              <figcaption   id="myId"></figcaption>  
+             </figure>   
+          
+    
+        </li>
+
+
+    </ul>
+
+   
+</body>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js'></script>
+<script src="js/angulargrid.js"></script>
+<script src="js/demo1.js"></script>
+
+
+
+</html>
